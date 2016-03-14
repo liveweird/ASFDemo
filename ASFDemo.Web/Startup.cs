@@ -28,6 +28,9 @@ namespace ASFDemo.Web
         {
             // Add framework services.
             services.AddMvc();
+
+            // Add fullduplex, reactive goodies.
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +59,8 @@ namespace ASFDemo.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseSignalR();
         }
 
         // Entry point for the application.

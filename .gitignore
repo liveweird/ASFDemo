@@ -1,5 +1,6 @@
 .vs
 packages
+pkg
 */bin/
 */obj/
 */node_modules/

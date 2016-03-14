@@ -4,14 +4,29 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<input type="number" id="counter" value="0"/>
+<button id="button">Click me!</button>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+@section scripts {
+    
+    <script src="~/lib/signalr/jquery.signalR.min.js"></script>  
+    <script src="~/signalr/hubs"></script>
+    
+    <script>
+        $(function() {
+            var pingpong = $.connection.pingpong;
+            pingpong.client.pong = function(value) {
+                var counter = $("#counter")[0];
+                var $counter = $(counter);
+                $counter.val(value);
+            };
+            $.connection.hub.start().done(function() {
+                $('#button').click(function () {
+                    var counter = $("#counter")[0];
+                    var $counter = $(counter);
+                    pingpong.server.ping($counter.val());
+                });
+            });
+        });
+    </script>
+}
