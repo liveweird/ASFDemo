@@ -85,6 +85,7 @@ namespace ASFDemo.CellActor
 
         public Task Refresh(object state)
         {
+            ActorEventSource.Current.ActorMessage(this, "Refreshing ecosystem");
             for (var x = 0; x < Size; x++)
             {
                 for (var y = 0; y < Size; y++)
@@ -99,6 +100,7 @@ namespace ASFDemo.CellActor
 
         public Task WakeUpCell(int x, int y)
         {
+            ActorEventSource.Current.ActorMessage(this, "Waking up a cell {0}_{1}", x, y);
             ICellActor cell = GetCell(x, y);
             return cell.WakeUp();
         }

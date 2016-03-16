@@ -2,8 +2,8 @@
 using Microsoft.AspNet.SignalR;
 using ASFDemo.CellActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
-using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.AspNet.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ASFDemo.Web.Hubs
 {
@@ -30,16 +30,17 @@ namespace ASFDemo.Web.Hubs
 
     class EcosystemEventsHandler : IEcosystemEvents
     {
-        private readonly IHubContext _context;
+        private readonly IApplicationBuilder _builder;
 
-        public EcosystemEventsHandler(IHubContext context)
+        public EcosystemEventsHandler(IApplicationBuilder builder)
         {
-            _context = context;
+            _builder = builder;
         }
 
         public void CellUpdated(int x, int y, bool isAlive)
         {
-            _context.Clients.All.addCellChange(x, y, isAlive ? 128 : 0);
+            var context = _builder.ApplicationServices.GetRequiredService<IHubContext<CellularHub>>();
+            context.Clients.All.addCellChange(x, y, isAlive ? 128 : 0);
         }
     }
 }

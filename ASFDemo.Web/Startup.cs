@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ASFDemo.CellActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
-using ASFDemo.Web.Hubs;
-using Microsoft.AspNet.SignalR;
 
 namespace ASFDemo.Web
 {
@@ -66,7 +64,7 @@ namespace ASFDemo.Web
 
             var proxy = ActorProxy.Create<IEcosystemActor>(
                     new ActorId(0), _ecoUrl);
-            proxy.SubscribeAsync(new EcosystemEventsHandler(app.ApplicationServices.GetRequiredService<IHubContext<CellularHub>>())).Wait();
+            // proxy.SubscribeAsync(new EcosystemEventsHandler(app)).Wait();
         }
 
         // Entry point for the application.
