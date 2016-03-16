@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="ASFDemoType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
-   <Parameters />
+   <Parameters>
+      <Parameter Name="CellActorService_PartitionCount" DefaultValue="10" />
+      <Parameter Name="CellActorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="CellActorService_TargetReplicaSetSize" DefaultValue="3" />
+      <Parameter Name="EcosystemActorService_PartitionCount" DefaultValue="10" />
+      <Parameter Name="EcosystemActorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="EcosystemActorService_TargetReplicaSetSize" DefaultValue="3" />
+   </Parameters>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="ASFDemo.CellActorPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
    <ServiceManifestImport>
       <ServiceManifestRef ServiceManifestName="ASFDemo.Web" ServiceManifestVersion="1.0.0" />
    </ServiceManifestImport>
@@ -9,6 +19,16 @@
          <StatelessService ServiceTypeName="ASFDemo.WebType">
             <SingletonPartition />
          </StatelessService>
+      </Service>
+      <Service Name="CellActorService" GeneratedIdRef="536e560d-e3d0-4d3f-9f26-cd781631c031">
+         <StatefulService ServiceTypeName="CellActorServiceType" TargetReplicaSetSize="[CellActorService_TargetReplicaSetSize]" MinReplicaSetSize="[CellActorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="[CellActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+         </StatefulService>
+      </Service>
+      <Service Name="EcosystemActorService" GeneratedIdRef="ff87fc05-17b9-45d9-be55-55867d73769d">
+         <StatefulService ServiceTypeName="EcosystemActorServiceType" TargetReplicaSetSize="[EcosystemActorService_TargetReplicaSetSize]" MinReplicaSetSize="[EcosystemActorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="[EcosystemActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+         </StatefulService>
       </Service>
    </DefaultServices>
 </ApplicationManifest>

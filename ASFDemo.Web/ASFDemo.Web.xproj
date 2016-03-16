@@ -21,5 +21,8 @@
     <DnxInvisibleContent Include=".bowerrc" />
     <DnxInvisibleContent Include="package.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASFDemo.CellActor.Interfaces\ASFDemo.CellActor.Interfaces.csproj" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

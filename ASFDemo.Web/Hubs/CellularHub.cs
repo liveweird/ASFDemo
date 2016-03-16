@@ -1,25 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
+using ASFDemo.CellActor.Interfaces;
+using Microsoft.ServiceFabric.Actors;
+using Microsoft.AspNet.SignalR.Infrastructure;
+using Microsoft.AspNet.Builder;
 
 namespace ASFDemo.Web.Hubs
 {
     public class CellularHub : Hub
     {
+        private readonly string _url = "fabric:/ASFDemo/CellActorService";
+
         public void RandomWakeUp(int cnt)
         {
             var random = new Random((int)DateTime.Now.Ticks);
             for (var i = 0; i < cnt; i++)
             {
-                // MvcApplication.Ecosystem.Tell(new WakeUpCellMessage { DimX = random.Next(10), DimY = random.Next(10) });
+                var eco = ActorProxy.Create<IEcosystemActor>(new ActorId(0), _url);
+                eco.WakeUpCell(random.Next(10), random.Next(10));
             }
         }
 
         public void WakeMeUp(int x, int y)
         {
-            // MvcApplication.Ecosystem.Tell(new WakeUpCellMessage { DimX = x, DimY = y });
+            var eco = ActorProxy.Create<IEcosystemActor>(new ActorId(0), _url);
+            eco.WakeUpCell(x, y);
+        }
+    }
+
+    class EcosystemEventsHandler : IEcosystemEvents
+    {
+        private readonly IHubContext _context;
+
+        public EcosystemEventsHandler(IHubContext context)
+        {
+            _context = context;
+        }
+
+        public void CellUpdated(int x, int y, bool isAlive)
+        {
+            _context.Clients.All.addCellChange(x, y, isAlive ? 128 : 0);
         }
     }
 }

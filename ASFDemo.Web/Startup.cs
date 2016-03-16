@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ASFDemo.CellActor.Interfaces;
+using Microsoft.ServiceFabric.Actors;
+using ASFDemo.Web.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace ASFDemo.Web
 {
     public class Startup
     {
+        private readonly string _ecoUrl = "fabric:/ASFDemo/EcosystemActorService";
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -61,6 +63,10 @@ namespace ASFDemo.Web
             });
 
             app.UseSignalR();
+
+            var proxy = ActorProxy.Create<IEcosystemActor>(
+                    new ActorId(0), _ecoUrl);
+            proxy.SubscribeAsync(new EcosystemEventsHandler(app.ApplicationServices.GetRequiredService<IHubContext<CellularHub>>())).Wait();
         }
 
         // Entry point for the application.

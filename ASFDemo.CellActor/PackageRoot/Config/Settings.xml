@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+   <Section Name="CellActorServiceReplicatorConfig">
+      <Parameter Name="ReplicatorEndpoint" Value="CellActorServiceReplicatorEndpoint" />
+      <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+   </Section>
+   <Section Name="CellActorServiceReplicatorSecurityConfig">
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
+   <Section Name="CellActorServiceLocalStoreConfig">
+      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
+      <Parameter Name="MaxVerPages" Value="32768" />
+   </Section>
+   <Section Name="EcosystemActorServiceReplicatorConfig">
+      <Parameter Name="ReplicatorEndpoint" Value="EcosystemActorServiceReplicatorEndpoint" />
+      <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+   </Section>
+   <Section Name="EcosystemActorServiceReplicatorSecurityConfig">
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
+   <Section Name="EcosystemActorServiceLocalStoreConfig">
+      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
+      <Parameter Name="MaxVerPages" Value="32768" />
+   </Section>
+</Settings>

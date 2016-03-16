@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASFDemo.CellActor", "ASFDemo.CellActor\ASFDemo.CellActor.csproj", "{D694A947-1261-406D-9E5E-66DC8FA530CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASFDemo.CellActor.Interfaces", "ASFDemo.CellActor.Interfaces\ASFDemo.CellActor.Interfaces.csproj", "{E7324DAA-8442-44A7-876E-26C77D41EA6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,18 @@ Global
 		{477D54C2-D789-4441-85F7-AEC67F475864}.Release|Any CPU.Build.0 = Release|Any CPU
 		{477D54C2-D789-4441-85F7-AEC67F475864}.Release|x64.ActiveCfg = Release|Any CPU
 		{477D54C2-D789-4441-85F7-AEC67F475864}.Release|x64.Build.0 = Release|Any CPU
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Debug|x64.ActiveCfg = Debug|x64
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Debug|x64.Build.0 = Debug|x64
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Release|Any CPU.ActiveCfg = Release|x64
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Release|x64.ActiveCfg = Release|x64
+		{D694A947-1261-406D-9E5E-66DC8FA530CD}.Release|x64.Build.0 = Release|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Debug|x64.ActiveCfg = Debug|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Debug|x64.Build.0 = Debug|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Release|Any CPU.ActiveCfg = Release|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Release|x64.ActiveCfg = Release|x64
+		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

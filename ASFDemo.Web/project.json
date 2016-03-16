@@ -27,7 +27,11 @@
     },
 
     "frameworks": {
-        "dnx451": { }
+      "dnx451": {
+        "dependencies": {
+          "ASFDemo.CellActor.Interfaces": "1.0.0-*"
+        }
+      }
     },
 
     "exclude": [
