@@ -5,12 +5,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ASFDemo.CellActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
+using System;
+using ASFDemo.Web.Hubs;
 
 namespace ASFDemo.Web
 {
     public class Startup
     {
-        private readonly string _ecoUrl = "fabric:/ASFDemo/EcosystemActorService";
+        private readonly Uri _ecoUrl = new Uri("fabric:/ASFDemo/EcosystemActorService");
 
         public Startup(IHostingEnvironment env)
         {
@@ -63,8 +65,9 @@ namespace ASFDemo.Web
             app.UseSignalR();
 
             var proxy = ActorProxy.Create<IEcosystemActor>(
-                    new ActorId(0), _ecoUrl);
-            // proxy.SubscribeAsync(new EcosystemEventsHandler(app)).Wait();
+                    new ActorId("ecosystem"), _ecoUrl);
+            proxy.Initialize().Wait();
+            proxy.SubscribeAsync(new EcosystemEventsHandler(app)).Wait();
         }
 
         // Entry point for the application.

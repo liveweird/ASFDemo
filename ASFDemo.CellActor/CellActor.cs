@@ -10,7 +10,7 @@ namespace ASFDemo.CellActor
     {
         private IActorTimer _refreshTimer;
         public const int Size = 10;
-        private readonly string _cellUrl = "fabric:/ASFDemo/CellActorService";
+        private readonly Uri _cellUrl = new Uri("fabric:/ASFDemo/CellActorService");
 
         [DataContract]
         internal sealed class ActorState
@@ -71,12 +71,12 @@ namespace ASFDemo.CellActor
                     var y_ = (y + 1 < Size) ? y + 1 : 0;
 
                     ICellActor cell = GetCell(x, y);
-                    return cell.Initialize(x, y, new[]
-                                                      {
-                                                          GenId(_x, _y), GenId(_x, y), GenId(_x, y_),
-                                                          GenId(x, _y), GenId(x, y_),
-                                                          GenId(x_, _y), GenId(x_, y), GenId(x_, y_),
-                                                      });
+                    cell.Initialize(x, y, new[]
+                                                {
+                                                    GenId(_x, _y), GenId(_x, y), GenId(_x, y_),
+                                                    GenId(x, _y), GenId(x, y_),
+                                                    GenId(x_, _y), GenId(x_, y), GenId(x_, y_),
+                                                });
                 }
             }
 
@@ -91,7 +91,7 @@ namespace ASFDemo.CellActor
                 for (var y = 0; y < Size; y++)
                 {
                     ICellActor cell = GetCell(x, y);
-                    return cell.WakeUp();
+                    cell.Refresh();
                 }
             }
 
@@ -123,8 +123,8 @@ namespace ASFDemo.CellActor
             public short NeighborsAlive { get; set; }
         }
 
-        private readonly string _cellUrl = "fabric:/ASFDemo/CellActorService";
-        private readonly string _ecoUrl = "fabric:/ASFDemo/EcosystemActorService";
+        private readonly Uri _cellUrl = new Uri("fabric:/ASFDemo/CellActorService");
+        private readonly Uri _ecoUrl = new Uri("fabric:/ASFDemo/EcosystemActorService");
 
         protected override Task OnActivateAsync()
         {
@@ -139,7 +139,7 @@ namespace ASFDemo.CellActor
 
         private IEcosystemActor GetEco()
         {
-            return ActorProxy.Create<IEcosystemActor>(new ActorId(0), _ecoUrl);
+            return ActorProxy.Create<IEcosystemActor>(new ActorId("ecosystem"), _ecoUrl);
         }
 
         private ICellActor GetCell(string neighbor)

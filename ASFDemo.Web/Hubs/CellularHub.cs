@@ -9,21 +9,21 @@ namespace ASFDemo.Web.Hubs
 {
     public class CellularHub : Hub
     {
-        private readonly string _url = "fabric:/ASFDemo/CellActorService";
+        private readonly Uri _ecoUrl = new Uri("fabric:/ASFDemo/EcosystemActorService");
 
         public void RandomWakeUp(int cnt)
         {
             var random = new Random((int)DateTime.Now.Ticks);
             for (var i = 0; i < cnt; i++)
             {
-                var eco = ActorProxy.Create<IEcosystemActor>(new ActorId(0), _url);
+                var eco = ActorProxy.Create<IEcosystemActor>(new ActorId("ecosystem"), _ecoUrl);
                 eco.WakeUpCell(random.Next(10), random.Next(10));
             }
         }
 
         public void WakeMeUp(int x, int y)
         {
-            var eco = ActorProxy.Create<IEcosystemActor>(new ActorId(0), _url);
+            var eco = ActorProxy.Create<IEcosystemActor>(new ActorId("ecosystem"), _ecoUrl);
             eco.WakeUpCell(x, y);
         }
     }
