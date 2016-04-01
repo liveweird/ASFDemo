@@ -4,6 +4,7 @@ using ASFDemo.CellActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.AspNet.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.ServiceFabric.Actors.Client;
 
 namespace ASFDemo.Web.Hubs
 {

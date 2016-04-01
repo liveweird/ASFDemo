@@ -8,10 +8,10 @@
         "pdb": "../../ASFDemo.CellActor.Interfaces/obj/x64/{configuration}/ASFDemo.CellActor.Interfaces.pdb"
       },
       "dependencies": {
-        "Microsoft.ServiceFabric": "4.5.175-preview",
-        "Microsoft.ServiceFabric.Actors": "1.5.175-preview",
-        "Microsoft.ServiceFabric.Data": "1.5.175-preview",
-        "Microsoft.ServiceFabric.Services": "1.5.175-preview"
+        "Microsoft.ServiceFabric": "5.0.135",
+        "Microsoft.ServiceFabric.Actors": "2.0.135",
+        "Microsoft.ServiceFabric.Data": "2.0.135",
+        "Microsoft.ServiceFabric.Services": "2.0.135"
       }
     }
   }

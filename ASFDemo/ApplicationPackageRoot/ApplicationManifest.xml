@@ -20,12 +20,12 @@
             <SingletonPartition />
          </StatelessService>
       </Service>
-      <Service Name="CellActorService" GeneratedIdRef="536e560d-e3d0-4d3f-9f26-cd781631c031">
+      <Service Name="CellActorService" GeneratedIdRef="e3a3810d-f658-46ca-8620-9ab67a62edee|Persisted">
          <StatefulService ServiceTypeName="CellActorServiceType" TargetReplicaSetSize="[CellActorService_TargetReplicaSetSize]" MinReplicaSetSize="[CellActorService_MinReplicaSetSize]">
             <UniformInt64Partition PartitionCount="[CellActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
          </StatefulService>
       </Service>
-      <Service Name="EcosystemActorService" GeneratedIdRef="ff87fc05-17b9-45d9-be55-55867d73769d">
+      <Service Name="EcosystemActorService" GeneratedIdRef="b6e857f2-6159-4aa7-8ef5-dd40c90d9253|Persisted">
          <StatefulService ServiceTypeName="EcosystemActorServiceType" TargetReplicaSetSize="[EcosystemActorService_TargetReplicaSetSize]" MinReplicaSetSize="[EcosystemActorService_MinReplicaSetSize]">
             <UniformInt64Partition PartitionCount="[EcosystemActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
          </StatefulService>

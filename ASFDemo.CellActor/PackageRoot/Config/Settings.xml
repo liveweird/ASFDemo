@@ -7,19 +7,11 @@
    <Section Name="CellActorServiceReplicatorSecurityConfig">
       <Parameter Name="CredentialType" Value="None" />
    </Section>
-   <Section Name="CellActorServiceLocalStoreConfig">
-      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
-      <Parameter Name="MaxVerPages" Value="32768" />
-   </Section>
    <Section Name="EcosystemActorServiceReplicatorConfig">
       <Parameter Name="ReplicatorEndpoint" Value="EcosystemActorServiceReplicatorEndpoint" />
       <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
    </Section>
    <Section Name="EcosystemActorServiceReplicatorSecurityConfig">
       <Parameter Name="CredentialType" Value="None" />
-   </Section>
-   <Section Name="EcosystemActorServiceLocalStoreConfig">
-      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
-      <Parameter Name="MaxVerPages" Value="32768" />
    </Section>
 </Settings>

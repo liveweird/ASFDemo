@@ -3,10 +3,13 @@ using Microsoft.ServiceFabric.Actors;
 using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Actors.Client;
+using Microsoft.ServiceFabric.Actors.Runtime;
 
 namespace ASFDemo.CellActor
 {
-    internal class EcosystemActor : StatefulActor<EcosystemActor.ActorState>, IEcosystemActor
+    [StatePersistence(StatePersistence.Persisted)]
+    internal class EcosystemActor : Actor, IEcosystemActor
     {
         private IActorTimer _refreshTimer;
         public const int Size = 10;
@@ -85,7 +88,7 @@ namespace ASFDemo.CellActor
 
         public Task Refresh(object state)
         {
-            ActorEventSource.Current.ActorMessage(this, "Refreshing ecosystem");
+            ActorEventSource.Current.Message("Refreshing ecosystem");
             for (var x = 0; x < Size; x++)
             {
                 for (var y = 0; y < Size; y++)
@@ -100,13 +103,14 @@ namespace ASFDemo.CellActor
 
         public Task WakeUpCell(int x, int y)
         {
-            ActorEventSource.Current.ActorMessage(this, "Waking up a cell {0}_{1}", x, y);
+            ActorEventSource.Current.Message("Waking up a cell {0}_{1}", x, y);
             ICellActor cell = GetCell(x, y);
             return cell.WakeUp();
         }
     }
 
-    internal class CellActor : StatefulActor<CellActor.ActorState>, ICellActor
+    [StatePersistence(StatePersistence.Persisted)]
+    internal class CellActor : Actor, ICellActor
     {
         [DataContract]
         internal sealed class ActorState
@@ -126,6 +130,20 @@ namespace ASFDemo.CellActor
         private readonly Uri _cellUrl = new Uri("fabric:/ASFDemo/CellActorService");
         private readonly Uri _ecoUrl = new Uri("fabric:/ASFDemo/EcosystemActorService");
 
+        protected ActorState State
+        {
+            get
+            {
+                return this.StateManager.GetStateAsync<ActorState>("state")
+                           .Result;
+            }
+            set
+            {
+                this.StateManager.SetStateAsync("state",
+                                                value);
+            }
+        }
+
         protected override Task OnActivateAsync()
         {
             if (this.State == null)
@@ -133,7 +151,7 @@ namespace ASFDemo.CellActor
                 this.State = new ActorState { Alive = false, NeighborsAlive = 0, Neighbors = new string[] { }, X = -1, Y = -1 };
             }
 
-            ActorEventSource.Current.ActorMessage(this, "State initialized to {0}", this.State);
+            ActorEventSource.Current.Message("State initialized to {0}", this.State);
             return Task.FromResult(true);
         }
 
@@ -155,7 +173,7 @@ namespace ASFDemo.CellActor
             }
 
             this.State.Alive = false;
-            ActorEventSource.Current.ActorMessage(this, "Dying... {0}_{1}", this.State.X, this.State.Y);
+            ActorEventSource.Current.Message("Dying... {0}_{1}", this.State.X, this.State.Y);
 
             GetEco().NotifyCellHasDied(this.State.X, this.State.Y);
         }
@@ -168,7 +186,7 @@ namespace ASFDemo.CellActor
             }
 
             this.State.Alive = true;
-            ActorEventSource.Current.ActorMessage(this, "Raising... {0}_{1}", this.State.X, this.State.Y);
+            ActorEventSource.Current.Message("Raising... {0}_{1}", this.State.X, this.State.Y);
 
             GetEco().NotifyCellIsAlive(this.State.X, this.State.Y);
         }

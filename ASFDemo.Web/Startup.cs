@@ -7,6 +7,7 @@ using ASFDemo.CellActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
 using System;
 using ASFDemo.Web.Hubs;
+using Microsoft.ServiceFabric.Actors.Client;
 
 namespace ASFDemo.Web
 {
