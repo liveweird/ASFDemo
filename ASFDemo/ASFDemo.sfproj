@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ASFDemo.CellActor\ASFDemo.CellActor.csproj" />
+    <ProjectReference Include="..\ASFDemo.WebApi\ASFDemo.WebApi.csproj" />
     <ProjectReference Include="..\ASFDemo.Web\ASFDemo.Web.xproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.targets" />

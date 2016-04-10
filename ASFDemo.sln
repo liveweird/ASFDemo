@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASFDemo.CellActor", "ASFDem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASFDemo.CellActor.Interfaces", "ASFDemo.CellActor.Interfaces\ASFDemo.CellActor.Interfaces.csproj", "{E7324DAA-8442-44A7-876E-26C77D41EA6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASFDemo.WebApi", "ASFDemo.WebApi\ASFDemo.WebApi.csproj", "{CFF2109A-8206-41CB-B62A-8B96FB6D6414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -40,6 +42,10 @@ Global
 		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Debug|x64.Build.0 = Debug|x64
 		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Release|x64.ActiveCfg = Release|x64
 		{E7324DAA-8442-44A7-876E-26C77D41EA6D}.Release|x64.Build.0 = Release|x64
+		{CFF2109A-8206-41CB-B62A-8B96FB6D6414}.Debug|x64.ActiveCfg = Debug|x64
+		{CFF2109A-8206-41CB-B62A-8B96FB6D6414}.Debug|x64.Build.0 = Debug|x64
+		{CFF2109A-8206-41CB-B62A-8B96FB6D6414}.Release|x64.ActiveCfg = Release|x64
+		{CFF2109A-8206-41CB-B62A-8B96FB6D6414}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
